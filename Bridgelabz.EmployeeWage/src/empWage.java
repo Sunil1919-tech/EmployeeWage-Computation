@@ -2,7 +2,7 @@ public class empWage {
     public static void main(String[] args) {
         System.out.println("Welcome to Employee Wage Computation");
 
-//constant
+        //constant
         int IS_PRESENT = 1;
         int HALF_TIME = 2;
         int FULL_TIME = 8;
@@ -11,17 +11,27 @@ public class empWage {
         int dailyWage = 0;
         //calculation
         int empCheck = (int) Math.floor(Math.random() * 10) % 3;
-        if (empCheck == IS_PRESENT) {
-            System.out.println(" Employee is Present");
-            dailyWage = FULL_TIME * WAGE_PER_HR;
-            System.out.println("the Salary is " + dailyWage);
-        } else if (empCheck == HALF_TIME) {
-            System.out.println("Employee present Half Day");
-            dailyWage = PART_TIME * WAGE_PER_HR;
-            System.out.println("the Salary is " + dailyWage);
-        } else {
-            System.out.println(" Employee is Absent");
-            System.out.println(dailyWage);
+        switch (empCheck) {
+            case 1:
+
+
+                System.out.println("the Employee is Present" +IS_PRESENT);
+                dailyWage = (WAGE_PER_HR * FULL_TIME);
+                System.out.println("the daily Wage is " + dailyWage);
+                break;
+
+            case 2:
+
+                System.out.println("the Employee Worked HalfDay" +HALF_TIME);
+                dailyWage = (WAGE_PER_HR * PART_TIME);
+                System.out.println("the daily Wage is " + dailyWage);
+                break;
+
+            default:
+                System.out.println("the Employee is Absent");
+                System.out.println("the daily Wage i " + dailyWage);
+                break;
+
         }
     }
 }
