@@ -26,9 +26,10 @@ public class empWage {
                     empHrs = 0;
             }
             totalEmpHrs += empHrs;
-            System.out.println("Day#: " + totalWorkingDays + " Emp Hr: " +empHrs);
+            System.out.println("Day : " + totalWorkingDays + " Employee Hrs: " +empHrs);
         }
         System.out.println("Total Hours worked =" + totalEmpHrs);
+        System.out.println("Number of days worked" +totalWorkingDays);
         int totalEmpWage = totalEmpHrs * WAGE_PER_HR;
         System.out.println("Total Employee Salary= " + totalEmpWage);
     }
