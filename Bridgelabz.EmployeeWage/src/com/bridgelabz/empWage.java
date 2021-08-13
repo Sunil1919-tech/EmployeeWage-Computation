@@ -2,51 +2,58 @@ package com.bridgelabz;
 
 /**
  * empWage is a application that implements
- * employee wage detatils
- * simuklates the totalworking Wage.
+ * employee wage details for multiple companies
+ * simulates the totalworking Wage.
  * Prints the output on screen
  * @author Sunil
  * @version 16.0
  * @since 13/08/2021
  */
 public class empWage {
-    public static final int IS_PART_TIME = 1;
-    public static final int IS_FULL_TIME = 2;
-    public static final int WAGE_PER_HR = 20;
-     public static final int NUM_WORKING_DAYS = 20;
-     public static final int MAX_WORKING_HRS = 100;
+    /*
+     * Program To Calculate Employee Wage
+     */
 
-    public static int computEmpWage(){
-        //variable decleration
-        int empHrs = 0;
-        int totalEmpHrs = 0;
-        int totalWorkingDays =0;
+    //constants
+    public static final int IS_PART_TIME = 0;
+    public static final int IS_FULL_TIME = 1;
 
-        // Computation
-        while (totalEmpHrs <= MAX_WORKING_HRS && totalWorkingDays< NUM_WORKING_DAYS) {
-            totalWorkingDays++;
-            int empCheck = (int) Math.floor(Math.random() * 10) % 3;
-            switch (empCheck) {
-                case IS_PART_TIME:
-                    empHrs = 4;
-                    break;
+    /*
+     * Declaring Method To Calculate EmpWage
+     */
+    public static int computeEmpWage(String company, int empRatePerHr, int numOfWorkingDays, int maxHoursPerMonth) {
+        int emphrs = 0;
+        int totalemphrs = 0;
+        int totalworkingdays = 0;
+        System.out.println("welcome to the Employee wage builder for Multiple Companies program");
+        //While Condition To Calculate Total EmpWage
+        while (totalemphrs <= maxHoursPerMonth && totalworkingdays < numOfWorkingDays) {
+            totalworkingdays++;
+            int empcheck = (int) Math.floor(Math.random() * 10) % 2;
+            switch (empcheck) {
                 case IS_FULL_TIME:
-                    empHrs = 8;
+                    emphrs = 8;
+                    break;
+                case IS_PART_TIME:
+                    emphrs = 4;
                     break;
                 default:
-                    empHrs = 0;
+                    emphrs = 0;
             }
-            totalEmpHrs += empHrs;
-            System.out.println("Day : " + totalWorkingDays + " Employee Hrs: " +empHrs);
+            totalemphrs = emphrs;
+            System.out.println("Days:" + totalworkingdays + "empHrs: " + emphrs);
         }
-        int totalEmpWage = totalEmpHrs * WAGE_PER_HR;
-        System.out.println("Total Employee Wage = " + totalEmpWage);
-        return  totalEmpWage;
+        int totalempwage = totalemphrs * empRatePerHr;
+        System.out.println("Total Emp Wage For Company: " + company + " is : " + totalempwage);
+        return totalempwage;
     }
 
+    /*
+     * Declaring Main Method
+     * Calling ComputeEmpWage Method Here
+     */
     public static void main(String[] args) {
-        computEmpWage();
+        computeEmpWage("Dmart", 20, 20, 50);
+        computeEmpWage("Relaince", 30, 40, 70);
     }
-
-
 }
