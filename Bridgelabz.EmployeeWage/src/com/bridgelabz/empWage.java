@@ -1,59 +1,85 @@
 package com.bridgelabz;
 
 /**
- * empWage is a application that implements
+ * empWage is an application that implements
  * employee wage details for multiple companies
  * simulates the totalworking Wage.
  * Prints the output on screen
+ *
  * @author Sunil
  * @version 16.0
  * @since 13/08/2021
  */
 public class empWage {
     /*
-     * Program To Calculate Employee Wage
+     * Program To Calculate Employee Wage for multiple companies
      */
 
     //constants
     public static final int IS_PART_TIME = 0;
     public static final int IS_FULL_TIME = 1;
 
-    /*
-     * Declaring Method To Calculate EmpWage
-     */
-    public static int computeEmpWage(String company, int empRatePerHr, int numOfWorkingDays, int maxHoursPerMonth) {
-        int emphrs = 0;
-        int totalemphrs = 0;
-        int totalworkingdays = 0;
-        System.out.println("welcome to the Employee wage builder for Multiple Companies program");
-        //While Condition To Calculate Total EmpWage
-        while (totalemphrs <= maxHoursPerMonth && totalworkingdays < numOfWorkingDays) {
-            totalworkingdays++;
-            int empcheck = (int) Math.floor(Math.random() * 10) % 2;
-            switch (empcheck) {
-                case IS_FULL_TIME:
-                    emphrs = 8;
-                    break;
-                case IS_PART_TIME:
-                    emphrs = 4;
-                    break;
-                default:
-                    emphrs = 0;
-            }
-            totalemphrs = emphrs;
-            System.out.println("Days:" + totalworkingdays + "empHrs: " + emphrs);
-        }
-        int totalempwage = totalemphrs * empRatePerHr;
-        System.out.println("Total Emp Wage For Company: " + company + " is : " + totalempwage);
-        return totalempwage;
+    private final String company;
+    private final int empRatePerHour;
+    private final int noOfWorkingDays;
+    private final int maxHoursPerMonth;
+    private int totalEmpWage;
+
+    public empWage(String company, int empRatePerHour, int noOfWorkingDays, int maxHoursPerMonth) {
+        this.company = company;
+        this.empRatePerHour = empRatePerHour;
+        this.noOfWorkingDays = noOfWorkingDays;
+        this.maxHoursPerMonth = maxHoursPerMonth;
+        this.totalEmpWage = totalEmpWage;
     }
 
-    /*
-     * Declaring Main Method
-     * Calling ComputeEmpWage Method Here
+    /**
+     * This method is used to compute the employee wage
      */
+    public void computeWage() {
+        int empHrs = 0;
+        int totalEmpHrs = 0;
+        int totalWorkingDays = 0;
+        /*
+         * while conditon to check the employee attendance
+         * Using Math.random method to generate random numbers 0, 1 and 2
+         */
+        while (totalEmpHrs <= maxHoursPerMonth && totalWorkingDays < noOfWorkingDays) {
+            totalWorkingDays++;
+            int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+            switch (empCheck) {
+                case 0: // Employee is absent
+                    empHrs = 0;
+                case 1: // FullTime Employee
+                    empHrs = 8;
+                    break;
+                case 2: // PartTime Employee
+                    empHrs = 4;
+                    break;
+            }
+
+            totalEmpHrs += empHrs;
+            System.out.println("Day " + totalWorkingDays + " : Employee worked : " + empHrs + " Hours ");
+        }
+        totalEmpWage = totalEmpHrs * empRatePerHour;
+        System.out.println("Total Wages is : " + totalEmpWage);
+
+    }
+
+    @Override
+    public String toString() {
+        return " Total Employee Wage _"  + company + " : " + totalEmpWage;
+
+    }
+        //main method declaring the methods
     public static void main(String[] args) {
-        computeEmpWage("Dmart", 20, 20, 50);
-        computeEmpWage("Relaince", 30, 40, 70);
+        System.out.println("Welcome To Employee Wage Computation Program");
+        empWage dmart = new empWage("Dmart", 20, 2, 10);
+        empWage reliance = new empWage("Reliance", 10, 4, 20);
+        dmart.computeWage();
+        System.out.println(dmart);
+        reliance.computeWage();
+        System.out.println(reliance);
+
     }
 }
